@@ -58,12 +58,9 @@ public class AppController {
     MetaData md=new MetaData();
 
     public AppController() {
-        this.gui= new Interfaz(this);
+        this.gui= new Interfaz(this);        
         this.gui.setVisible(true);
-        /*this.userWindow = new UserNameWindow();
-        this.userWindow.pack();
-        this.userWindow.setVisible(true);*/
-
+        this.gui.setEnabled(false);
     }
 
 
