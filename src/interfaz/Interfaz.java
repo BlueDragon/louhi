@@ -92,6 +92,7 @@ public class Interfaz extends javax.swing.JFrame {
     String articleID;//Almacena el id del articulo
     //PDFPasswordIncorrectoWindow pdfPasswordIncorrectoWindow;
     String password = "";
+    String userName;//almacena el nombre de usuario
     MetaData md=new MetaData();
     boolean metadataFlag=false;
     /** Creates new form Interfaz */
@@ -107,7 +108,9 @@ public class Interfaz extends javax.swing.JFrame {
         initLangCombo();
         revWin = new ReviewWindow(this.control);
         labelErrorCita.setVisible(false);
+        UserNameWindow unw = new UserNameWindow(this);
     }
+
 
     public String getPassword() {
         return password;
@@ -3223,6 +3226,9 @@ System.out.println("tablaCitasClick - boton: "+evt.getButton());
     }
 
     public void fillMetaData(){
+        this.md.setOwner(control.getIPLocal());
+        this.md.setCreationDate(control.getCommitDate());
+        this.md.setUserName(this.userName);
         this.md.setKeywords(this.tfPalabrasClave.getText());
         this.md.setMaker(this.tfCreador.getText());
         this.md.setProducer(this.tfProductor.getText());
