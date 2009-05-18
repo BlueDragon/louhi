@@ -16,6 +16,7 @@
 
 package interfaz;
 
+import control.AppController;
 import control.Db4oConnectionManager;
 import control.Db4oLocalConnectionManager;
 import javax.swing.event.DocumentEvent;
@@ -29,14 +30,19 @@ import modelo.MetaData;
 public class UserNameWindow extends javax.swing.JFrame {
 
     /** Creates new form UserNameWindow */
-    public UserNameWindow() {
-        initComponents();
+
+    UserNameWindow(Interfaz gui) {
+         initComponents();
         this.BotonAceptarUserName.setEnabled(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.gui=gui;
+        this.pack();
+        this.setSize(450, 150);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     private Interfaz gui;
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -55,6 +61,7 @@ public class UserNameWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nombre de usuario");
         setAlwaysOnTop(true);
+        setMinimumSize(new java.awt.Dimension(420, 400));
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -114,12 +121,11 @@ public class UserNameWindow extends javax.swing.JFrame {
 
     private void BotonAceptarUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAceptarUserNameActionPerformed
         String userName = this.TextFieldUserName.getText();
-        System.out.println(userName);
         MetaData md = new MetaData();
         md.setUserName(userName);
+        gui.userName=this.TextFieldUserName.getText();
+        gui.setEnabled(true);
         this.setVisible(false);
-        //this.gui = new Interfaz(this);
-        gui.setVisible(true);
     }//GEN-LAST:event_BotonAceptarUserNameActionPerformed
 
     /**
@@ -128,7 +134,11 @@ public class UserNameWindow extends javax.swing.JFrame {
     /*public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserNameWindow().setVisible(true);
+                UserNameWindow u = new UserNameWindow();
+                u.pack();
+                u.setLocationRelativeTo(null);
+                u.setSize(450, 150);
+                u.setVisible(true);
             }
         });
     }*/
